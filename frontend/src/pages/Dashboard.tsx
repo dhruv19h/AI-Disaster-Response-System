@@ -10,6 +10,7 @@ import DisasterChart from "../components/dashboard/DisasterChart";
 import AIInsight from "../components/dashboard/AIInsight";
 import ActiveIncidents from "../components/dashboard/ActiveIncidents";
 import ResourceStatus from "../components/dashboard/ResourceStatus";
+import DisasterMap from "../components/map/DisasterMap";
 
 function Dashboard() {
   return (
@@ -79,7 +80,10 @@ function Dashboard() {
 
       </div>
 
-      {/* Chart + AI */}
+      {/* Live Disaster Map */}
+      <div>
+        <DisasterMap />
+      </div>
       <div className="grid gap-6 xl:grid-cols-3">
 
         <div className="xl:col-span-2">
