@@ -2,13 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import MainLayout from "./components/layout/MainLayout";
 import Dashboard from "./pages/Dashboard";
+import EmergencyManagement from "./pages/EmergencyManagement";
 
 function App() {
   return (
     <BrowserRouter>
-
       <Routes>
-
         <Route element={<MainLayout />}>
 
           <Route
@@ -17,14 +16,18 @@ function App() {
           />
 
           <Route
+            path="/emergency"
+            element={<EmergencyManagement />}
+          />
+
+          {/* Catch-all route */}
+          <Route
             path="*"
             element={<Navigate to="/dashboard" replace />}
           />
 
         </Route>
-
       </Routes>
-
     </BrowserRouter>
   );
 }

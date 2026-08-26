@@ -10,42 +10,53 @@ import {
   Settings,
 } from "lucide-react";
 
+import { NavLink } from "react-router-dom";
+
 const menuItems = [
   {
     name: "Dashboard",
     icon: LayoutDashboard,
+    path: "/dashboard",
   },
   {
     name: "Disasters",
     icon: Waves,
+    path: "#",
   },
   {
     name: "Emergency Reports",
     icon: Siren,
+    path: "/emergency",
   },
   {
     name: "Resources",
     icon: Package,
+    path: "#",
   },
   {
     name: "Allocations",
     icon: Target,
+    path: "#",
   },
   {
     name: "Hospitals",
     icon: Hospital,
+    path: "#",
   },
   {
     name: "Shelters",
     icon: Tent,
+    path: "#",
   },
   {
     name: "AI Analysis",
     icon: BrainCircuit,
+    path: "#",
   },
   {
     name: "Settings",
     icon: Settings,
+    path: "#",
   },
 ];
 
@@ -55,7 +66,7 @@ function Sidebar() {
 
       {/* Logo */}
       <div className="flex h-20 items-center border-b border-slate-800 px-6">
-        
+
         <div className="mr-3 flex h-10 w-10 items-center justify-center rounded-xl bg-red-600">
           <Siren size={22} />
         </div>
@@ -85,17 +96,42 @@ function Sidebar() {
 
             const Icon = item.icon;
 
+            // Items that don't have a page yet
+            if (item.path === "#") {
+              return (
+                <button
+                  key={item.name}
+                  type="button"
+                  className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-white"
+                >
+                  <Icon size={19} />
+
+                  <span>
+                    {item.name}
+                  </span>
+                </button>
+              );
+            }
+
+            // Items with an actual route
             return (
-              <button
+              <NavLink
                 key={item.name}
-                className="flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm text-slate-300 transition hover:bg-slate-800 hover:text-white"
+                to={item.path}
+                className={({ isActive }) =>
+                  `flex w-full items-center gap-3 rounded-lg px-3 py-3 text-sm transition ${
+                    isActive
+                      ? "bg-red-600 text-white shadow-lg shadow-red-900/20"
+                      : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                  }`
+                }
               >
                 <Icon size={19} />
 
                 <span>
                   {item.name}
                 </span>
-              </button>
+              </NavLink>
             );
 
           })}
